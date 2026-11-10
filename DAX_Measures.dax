@@ -1,0 +1,69 @@
+// ==========================================
+// UBER RIDE BOOKINGS ANALYTICS - DAX MEASURES
+// ==========================================
+
+// 1. VOLUME & FULFILLMENT METRICS
+Total Bookings = COUNTROWS('Fact_RideBookings')
+
+Completed Bookings = 
+CALCULATE(
+    COUNTROWS('Fact_RideBookings'), 
+    'Fact_RideBookings'[Booking Status] = "Completed"
+)
+
+Booking Success Rate % = 
+DIVIDE([Completed Bookings], [Total Bookings], 0)
+
+// 2. FINANCIAL & REVENUE METRICS
+Fulfilled Revenue = SUM('Fact_RideBookings'[Booking Value])
+
+Avg Trip Fare = AVERAGE('Fact_RideBookings'[Booking Value])
+
+// 3. CANCELLATION FORENSICS
+Driver Cancelled Rides = 
+CALCULATE(
+    COUNTROWS('Fact_RideBookings'), 
+    'Fact_RideBookings'[Booking Status] = "Cancelled by Driver"
+)
+
+Driver Cancellation Rate % = 
+DIVIDE([Driver Cancelled Rides], [Total Bookings], 0)
+
+Customer Cancelled Rides = 
+CALCULATE(
+    COUNTROWS('Fact_RideBookings'), 
+    'Fact_RideBookings'[Booking Status] = "Cancelled by Customer"
+)
+
+Customer Cancellation Rate % = 
+DIVIDE([Customer Cancelled Rides], [Total Bookings], 0)
+
+Unmet Demand (No Driver) = 
+CALCULATE(
+    COUNTROWS('Fact_RideBookings'), 
+    'Fact_RideBookings'[Booking Status] = "No Driver Found"
+)
+
+Unmet Demand Rate % = 
+DIVIDE([Unmet Demand (No Driver)], [Total Bookings], 0)
+
+// 4. FINANCIAL LEAKAGE ESTIMATION
+Lost Revenue Potential = 
+VAR UnfulfilledCount = [Driver Cancelled Rides] + [Customer Cancelled Rides] + [Unmet Demand (No Driver)]
+VAR AvgFare = [Avg Trip Fare]
+RETURN
+    UnfulfilledCount * AvgFare
+
+Revenue Realization % = 
+DIVIDE([Fulfilled Revenue], [Fulfilled Revenue] + [Lost Revenue Potential], 0)
+
+// 5. OPERATIONAL TURNAROUND & RATINGS
+Avg Vehicle Arrival Time = AVERAGE('Fact_RideBookings'[Avg VTAT])
+
+Avg Customer Wait Time = AVERAGE('Fact_RideBookings'[Avg CTAT])
+
+Avg Trip Distance = AVERAGE('Fact_RideBookings'[Ride Distance])
+
+Avg Customer Rating = AVERAGE('Fact_RideBookings'[Customer Rating])
+
+Avg Driver Rating = AVERAGE('Fact_RideBookings'[Driver Ratings])
