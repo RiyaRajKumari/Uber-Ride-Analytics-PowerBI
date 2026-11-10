@@ -209,7 +209,10 @@ Avg Vehicle Arrival Time = AVERAGE('Fact_RideBookings'[Avg VTAT])
 Avg Customer Rating = AVERAGE('Fact_RideBookings'[Customer Rating])
 Avg Driver Rating = AVERAGE('Fact_RideBookings'[Driver Ratings])
 
+---
+
 ## 💡 Strategic Business Recommendations
-Dynamic Peak-Hour Driver Incentives: Driver cancellations peak heavily between 5:00 PM and 9:00 PM. Introducing targeted surge incentives during this 4-hour window can reclaim up to ₹15M in lost gross booking value.
-Turnaround Time (VTAT) Reduction: Data demonstrates customer cancellation risk spikes when driver ETA exceeds 9 minutes. Implementing tighter geo-fenced dispatching in dense commercial hubs will drastically reduce rider drop-offs.
-Fleet Rebalancing: Auto-rickshaws and two-wheelers maintain the highest asset turnover; prioritizing EV adoption (eBikes) in congested transit belts offers substantial margin expansion.
+
+1. **Dynamic Peak-Hour Driver Incentives**: Driver cancellations peak heavily between 5:00 PM and 9:00 PM. Introducing targeted surge incentives during this 4-hour window can reclaim up to ₹15M in lost gross booking value.
+2. **Turnaround Time (VTAT) Reduction**: Data demonstrates customer cancellation risk spikes when driver ETA exceeds 9 minutes. Implementing tighter geo-fenced dispatching in dense commercial hubs will drastically reduce rider drop-offs.
+3. **Fleet Rebalancing**: Auto-rickshaws and two-wheelers maintain the highest asset turnover; prioritizing EV adoption (eBikes) in congested transit belts offers substantial margin expansion.
