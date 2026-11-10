@@ -36,8 +36,14 @@ The primary objective of this project is to develop an enterprise-grade Business
 ## 🔬 Methodology & Technical Architecture
 
 This project followed a rigorous 6-stage Business Intelligence and Data Analytics lifecycle:
-┌──────────────────┐ ┌──────────────────┐ ┌─────────────────┐ │ 1. Data Ingestion│ ──> │ 2. Power Query │ ──> │ 3. Star Schema │ │ (150K Rows) │ │ ETL & Feature │ │ Modeling │ └──────────────────┘ └──────────────────┘ └─────────────────┘ │ ┌──────────────────┐ ┌──────────────────┐ ▼ │ 6. Strategic │ <── │ 5. Executive UI │ <── ┌─────────────────┐ │ Insights │ │ Dashboard UX │ │ 4. DAX Measures │ └──────────────────┘ └──────────────────┘ │ & Calculations│ └─────────────────┘
-
+```mermaid
+flowchart LR
+    A["📥 1. Data Ingestion<br/>(150K Rows CSV)"] --> B["⚙️ 2. Power Query ETL<br/>(Cleaning & Features)"]
+    B --> C["🗄️ 3. Star Schema<br/>(Fact & Dim_Date)"]
+    C --> D["📐 4. DAX Formulation<br/>(15+ Business KPIs)"]
+    D --> E["📊 5. Power BI Dashboards<br/>(4 Analytical Views)"]
+    E --> F["💡 6. Strategic Insights<br/>(Business Actions)"]
+```
 
 ### Stage 1: Data Profiling & Audit
 * **Dataset Scope**: Evaluated 150,000 ride booking logs covering 21 transactional attributes (timestamps, booking outcomes, vehicle types, geospatial hubs, operational turnaround times, fare values, customer/driver ratings, and cancellation reasons).
