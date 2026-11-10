@@ -208,6 +208,7 @@ CALCULATE(
 Avg Vehicle Arrival Time = AVERAGE('Fact_RideBookings'[Avg VTAT])
 Avg Customer Rating = AVERAGE('Fact_RideBookings'[Customer Rating])
 Avg Driver Rating = AVERAGE('Fact_RideBookings'[Driver Ratings])
+```
 
 ---
 
